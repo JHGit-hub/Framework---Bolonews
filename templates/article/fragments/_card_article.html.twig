@@ -10,14 +10,14 @@
         </div>
         <div class="card-text">
             <div class="card-categorie">
-                <h3>{{ article.categorie.name }}</h3>
+                <p class="categorie">{{ article.categorie.name }}</p>
             </div>
             <div class="card-title">
-                <h2>{{ article.title }}</h2>
+                <h4>{{ article.title }}</h4>
                 <p>{{ article.user.pseudo }}</p>
             </div>
             <div class="card-date">
-                <p>{{ article.date|date('d/m/Y') }}</p>
+                <p>{{ article.creation_date|date('d/m/Y') }}</p>
             </div>
             <div class="card-summary">
                 <p>{{ article.summary }}</p>

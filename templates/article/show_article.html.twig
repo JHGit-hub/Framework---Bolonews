@@ -1,1 +1,57 @@
- 
+ {% extends 'base.html.twig' %}
+
+{% block title %}Détail de l'Article{% endblock %}
+
+{% block body %}
+    <section class="container detail-article">
+        <div class="article-detail">
+            <div class="article-categorie">
+                <p>{{ article.categorie.name }}
+            </div>
+            <div class="article-title">
+                <h2>{{ article.title }}
+            </div>
+            <div class="article-date">
+                <p>{{ article.creation_date|date('d/m/Y') }}</p>
+            </div>
+            <div class="article-summary">
+                <h4>{{ article.summary }}</h4>
+            </div>
+        </div>
+        <div class="article-img">
+            {% if article.image %}
+                <img src="{{ asset('images/' ~ article.image) }}" alt="photo de l'article">
+            {% else %}
+                <img src="{{ asset('images/article_default.jpg') }}" alt="photo par defaut de l'article">
+            {% endif %}
+        </div>
+        <div class="article-content">
+            <p>{{ article.content }}</p>
+        </div>
+        <div class="article-footer">
+            <div class="article-pseudo">
+                {% if article.user.image %}
+                    <img src="{{ asset('images/' ~ article.user.image) }}" alt="Photo de {{ article.user.pseudo }}">
+                {% else %}
+                    <img src="{{ asset('images/profil_default.jpg') }}" alt="Photo par defaut de l'auteur">
+                {% endif %}
+                <p>{{ article.user.pseudo }}</p>           
+            </div>
+            <div class="article-social">
+                <div class="card-comment">
+                    <img src="{{ asset('icons/message_circle.svg') }}" alt="nombre de commentaire">
+                    <p>{{ nbrComment }}</p>
+                </div>
+                <div class="card-like">
+                    <img src="{{ asset('icons/heart.svg') }}" alt="nombre de like">
+                    <p>{{ nbrlike }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container-fuild"></section>
+    <section class="container comment">
+        <h4>Commentaires</h4>
+        {% include 'article/fragments/_article_comment.html.twig' %}
+    </section>
+{% endblock %}
