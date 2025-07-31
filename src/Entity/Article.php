@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -17,12 +18,25 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le titre est requis.")]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Length(
+        min: 20,
+        max: 100,
+        minMessage: 'Le résumé doit contenir au moins 20 caractéres',
+        maxMessage: 'Le résumé doit contenir au maximun 100 caractéres',
+    )]
     private ?string $summary = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Length(
+        min: 20,
+        max: 5000,
+        minMessage: "Le contenu de l'article doit contenir au moins 20 caractéres",
+        maxMessage: "Le contenu de l'article doit contenir au maximun 5000 caractéres",
+    )]
     private ?string $content = null;
 
     #[ORM\Column(length: 255, nullable: true)]

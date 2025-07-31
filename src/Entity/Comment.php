@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -18,6 +19,12 @@ class Comment
     private ?\DateTime $publication_date = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Length(
+        min: 20,
+        max: 500,
+        minMessage: 'Le commentaire doit contenir au moins 20 caractéres',
+        maxMessage: 'Le commentaire doit contenir au maximun 500 caractéres',
+    )]
     private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]

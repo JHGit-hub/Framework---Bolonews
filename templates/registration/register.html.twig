@@ -1,19 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Création de compte{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
-    {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+    <h1>Enregistrement de compte</h1>
+    {{ form_start(registrationForm , {'attr': {'novalidate': 'novalidate'}})}}
+        <div>
+            <!-- label -->
+            {{ form_label(registrationForm.email) }}
+            <!-- input -->
+            {{ form_widget(registrationForm.email, {
+                "attr": { 'class': "form-control " ~ (registrationForm.email.vars.errors|length >0 ? "input-error" : '')}
+            }) }}
+            <!-- errors -->
+            {{ form_errors(registrationForm.email, {"attr":{ "class": 'p-error'}}) }}
+        </div>
+        <div>
+            <!-- label -->
+            {{ form_label(registrationForm.plainPassword) }}
+            <!-- input -->
+            {{ form_widget(registrationForm.plainPassword, {
+                "attr": { 'class': "form-control " ~ (registrationForm.plainPassword.vars.errors|length >0 ? "input-error" : '')}
+            }) }}
+            <!-- errors -->
+            {{ form_errors(registrationForm.plainPassword, {"attr":{ "class": 'p-error'}}) }}
+        </div>
+        <div>
+            {{ form_label(registrationForm.pseudo) }}
+            {{ form_widget(registrationForm.pseudo, {
+                "attr": { 'class': "form-control " ~ (registrationForm.plainPassword.vars.errors|length >0 ? "input-error" : '')}
+            }) }}
+            {{ form_errors(registrationForm.pseudo, {"attr":{ "class": 'p-error'}}) }}
+        </div>
+        <div>
+            {{ form_label(registrationForm.image) }}
+            {{ form_widget(registrationForm.image) }}
+            {{ form_errors(registrationForm.image) }}
+        </div>
+        <div>
+            {{ form_label(registrationForm.agreeTerms) }}
+            {{ form_widget(registrationForm.agreeTerms) }}
+            {{ form_errors(registrationForm.agreeTerms) }}
+        </div>    
+        <button type="submit" class="edit-btn">Envoyer</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
