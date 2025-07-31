@@ -3,8 +3,15 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %}
-    <section class="filter-form">
-    
+    <section class="search-form">
+        <div>
+            {{ form_start(form) }}
+                {{ form_widget(form.search) }}
+                <button type="submit" class="search-btn">
+                    <img src="{{ asset('icons/search.svg') }}" alt="bouton de validation de recherche">
+                </button>
+            {{ form_end(form) }}
+        </div>
     </section>
     <section class="container list-article">
         <div class="banner-list">
