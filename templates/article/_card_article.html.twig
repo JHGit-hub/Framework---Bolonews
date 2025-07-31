@@ -1,0 +1,41 @@
+{# templates/article/_card_article.html.twig #}
+{% for article in articles %}
+    <div class="card">
+        <div class="card-img">
+            {% if article.image %}
+                <img src="{{ asset('images/' ~ article.image) }}" alt="visuel de l'article">
+            {% else %}
+                <img src="{{ asset('images/article_default.jpg') }}" alt="visuel de l'article par defaut">
+            {% endif %}
+        </div>
+        <div class="card-text">
+            <div class="card-categorie">
+                <h3>{{ article.categorie.name }}</h3>
+            </div>
+            <div class="card-title">
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.user.pseudo }}</p>
+            </div>
+            <div class="card-date">
+                <p>{{ article.date|date('d/m/Y') }}</p>
+            </div>
+            <div class="card-summary">
+                <p>{{ article.summary }}</p>
+            </div>
+            <div class="card-link">
+                <a href="{{ path('article_show', {id: article.id}) }}">Lire la suite</a>
+                <img src="{{ asset('icons/arrow_right.svg') }}" alt="lien vers lecture de l'article">
+            </div>
+            <div class="card-social">
+                <div class="card-comment">
+                    <img src="{{ asset('icons/message_circle.svg') }}" alt="nombre de commentaire">
+                    <p>{{ nbrComment }}</p>
+                </div>
+                <div class="card-like">
+                    <img src="{{ asset('icons/heart.svg') }}" alt="nombre de like">
+                    <p>{{ nbrlike }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

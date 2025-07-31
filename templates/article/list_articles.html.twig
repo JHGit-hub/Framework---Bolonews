@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+    <section class="filter-form">
+    
+    </section>
+    <section class="container list-article">
+        <div class="banner-list">
+            <h4>Résultat de votre recherche</h4>
+            <div class="card-list">
+                {% include 'article/_card_article.html.twig' %}
+            </div>           
+        </div>
+    </section>
+{% endblock %}
