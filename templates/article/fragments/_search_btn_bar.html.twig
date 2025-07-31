@@ -1,0 +1,5 @@
+{% for article in articles %}
+    <div class="cta">
+        <a href="{{ path('categorie_filter') }}" class="primaryBtn">{{ article.categorie.name }}</a>
+    </div>
+{% endfor %}

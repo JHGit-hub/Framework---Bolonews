@@ -3,8 +3,8 @@
 {% block title %}Articles{% endblock %}
 
 {% block body %}
-    <section class="search-form">
-        <div>
+    <section class="search-bar">
+        <div class="search-form">
             {{ form_start(form) }}
                 {{ form_widget(form.search) }}
                 <button type="submit" class="search-btn">
@@ -12,12 +12,15 @@
                 </button>
             {{ form_end(form) }}
         </div>
+        <div class="search-filter">
+            {% include 'article/fragments/_search_btn_bar.html.twig' %}
+        </div>
     </section>
     <section class="container list-article">
         <div class="banner-list">
             <h4>Résultat de votre recherche</h4>
             <div class="card-list">
-                {% include 'article/_card_article.html.twig' %}
+                {% include 'article/fragments/_card_article.html.twig' %}
             </div>           
         </div>
     </section>
