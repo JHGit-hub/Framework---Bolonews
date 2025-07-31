@@ -1,41 +1,43 @@
-{# templates/article/_card_article.html.twig #}
-{% for article in articles %}
-    <div class="card">
-        <div class="card-img">
-            {% if article.image %}
-                <img src="{{ asset('images/' ~ article.image) }}" alt="visuel de l'article">
-            {% else %}
-                <img src="{{ asset('images/article_default.jpg') }}" alt="visuel de l'article par defaut">
+{# templates/article/fragments/_card_article.html.twig #}
+<div class="card">
+    <div class="card-img">
+        {% if article.image %}
+            <img src="{{ asset('images/' ~ article.image) }}" alt="visuel de l'article">
+        {% else %}
+            <img src="{{ asset('images/article_default.jpg') }}" alt="visuel de l'article par defaut">
+        {% endif %}
+    </div>
+    <div class="card-text">
+        <div class="card-categorie">
+            <p class="categorie">{{ article.categorie.name }}</p>
+            <!-- si l'utilisateur est connecté et est l'auteur de l'article -->
+            {% if (app.user && app.user == article.user) %}
+                <a href="{{ path('article_edit', {id: article.id}) }}" class="secondary-btn">Editer</a>
             {% endif %}
         </div>
-        <div class="card-text">
-            <div class="card-categorie">
-                <p class="categorie">{{ article.categorie.name }}</p>
+        <div class="card-title">
+            <h4>{{ article.title }}</h4>
+            <p>{{ article.user.pseudo }}</p>
+        </div>
+        <div class="card-date">
+            <p>{{ article.creation_date|date('d/m/Y') }}</p>
+        </div>
+        <div class="card-summary">
+            <p>{{ article.summary }}</p>
+        </div>
+        <div class="card-link">
+            <a href="{{ path('article_show', {id: article.id}) }}">Lire la suite</a>
+            <img src="{{ asset('icons/arrow_right.svg') }}" alt="lien vers lecture de l'article">
+        </div>
+        <div class="card-social">
+            <div class="card-comment">
+                <img src="{{ asset('icons/message_circle.svg') }}" alt="nombre de commentaire">
+                <p>{{ nbrComment }}</p>
             </div>
-            <div class="card-title">
-                <h4>{{ article.title }}</h4>
-                <p>{{ article.user.pseudo }}</p>
-            </div>
-            <div class="card-date">
-                <p>{{ article.creation_date|date('d/m/Y') }}</p>
-            </div>
-            <div class="card-summary">
-                <p>{{ article.summary }}</p>
-            </div>
-            <div class="card-link">
-                <a href="{{ path('article_show', {id: article.id}) }}">Lire la suite</a>
-                <img src="{{ asset('icons/arrow_right.svg') }}" alt="lien vers lecture de l'article">
-            </div>
-            <div class="card-social">
-                <div class="card-comment">
-                    <img src="{{ asset('icons/message_circle.svg') }}" alt="nombre de commentaire">
-                    <p>{{ nbrComment }}</p>
-                </div>
-                <div class="card-like">
-                    <img src="{{ asset('icons/heart.svg') }}" alt="nombre de like">
-                    <p>{{ nbrlike }}</p>
-                </div>
+            <div class="card-like">
+                <img src="{{ asset('icons/heart.svg') }}" alt="nombre de like">
+                <p>{{ nbrlike }}</p>
             </div>
         </div>
     </div>
-{% endfor %}
+</div>

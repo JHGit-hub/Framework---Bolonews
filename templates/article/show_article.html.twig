@@ -1,4 +1,5 @@
- {% extends 'base.html.twig' %}
+{# templates/article/show_article.html.twig #}
+{% extends 'base.html.twig' %}
 
 {% block title %}Détail de l'Article{% endblock %}
 
@@ -53,5 +54,13 @@
     <section class="container comment">
         <h4>Commentaires</h4>
         {% include 'article/fragments/_article_comment.html.twig' %}
+    </section>
+    <section class="container new-comment">
+        <div class="comment-form">
+            {{ form_start(form) }}
+                {{ form_widget(form.content) }}
+                <button type="submit" class="secondary-btn">Ajouter</button>
+            {{ form_end(form) }}
+        </div>
     </section>
 {% endblock %}

@@ -1,0 +1,44 @@
+{# templates/article/user_homepage.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Utilisateur{% endblock %}
+
+{% block body %}
+    <section class="search-bar">
+        <div class="search-form">
+            {{ form_start(form) }}
+                {{ form_widget(form.search) }}
+                <button type="submit" class="search-btn">
+                    <img src="{{ asset('icons/search.svg') }}" alt="bouton de validation de recherche">
+                </button>
+            {{ form_end(form) }}
+        </div>
+        <div class="search-filter">
+            {% include 'article/fragments/_search_btn_bar.html.twig' %}
+        </div>
+    </section>
+    <section class="container published-article">
+        <div class="published-list">
+            <div class="secondary-btn">
+                <a href="{{ path('article_new') }}">Créer un nouvel article</a>
+            </div>
+            <h4>Mes articles publiés</h4>
+            <div class="card-list">
+            {% for categorie in published_categories %}
+                {% include 'article/fragments/_card_article.html.twig' %}
+            {% endfor %}
+            </div>           
+        </div>
+    </section>
+    <section class="container unpublished-article">
+        <div class="published-list">
+            <h4>Mes articles non publiés</h4>
+            <div class="card-list">
+            {% for categorie in unpublished_categories %}
+                {% include 'article/fragments/_card_article.html.twig' %}
+            {% endfor %}
+            </div>           
+        </div>
+    </section>
+
+{% endblock %}

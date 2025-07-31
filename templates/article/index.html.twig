@@ -1,3 +1,4 @@
+{# templates/article/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Acceuil{% endblock %}
@@ -13,7 +14,9 @@
         <div class="banner-list">
             <h4>Dernieres parutions</h4>
             <div class="card-list">
-                {% include 'article/fragments/_card_article.html.twig' %}
+                {% for article in articles %}
+                    {% include 'article/fragments/_card_article.html.twig' %}
+                {% endfor %}   
             </div>           
         </div>
     </section>
