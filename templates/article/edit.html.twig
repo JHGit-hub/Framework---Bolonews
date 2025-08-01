@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'un article{% endblock %}
+
+{% block body %}
+    <div class="modal-edit">
+        <div class="edit-title">
+            <h4>Modifier l'article'</h4>
+            <a href="{{ path('app_private') }}" class="back-btn">Annuler</a>
+        </div>
+        {{ form_start(form) }}
+
+            <!-- Affiche l’image actuelle si elle existe -->
+            {% if article.image %}
+                <div class="current-image">
+                    <p>Image actuelle :</p>
+                    <img src="{{ asset('images/' ~ article.image) }}" alt="Image actuelle" width="120">
+                </div>
+            {% endif %}
+
+            <div class="formulaire">
+                {{ form_row(form.title) }}
+                {{ form_row(form.summary) }}
+                {{ form_row(form.content) }}
+                {{ form_row(form.creation_date) }}
+                {{ form_row(form.update_date) }}
+                {{ form_row(form.publication) }}
+                {{ form_row(form.categorie) }}
+                {{ form_row(form.image) }}
+            </div>
+
+            <button type="submit" class="edit-btn">Enregistrer</button>
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}

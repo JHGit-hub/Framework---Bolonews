@@ -12,7 +12,7 @@
             <a href="{{ path('app_article', {'categorieId' : article.categorie.id}) }}" class="p-categorie">{{ article.categorie.name }}</a>
             <!-- si l'utilisateur est connecté et est l'auteur de l'article -->
             {% if app.user and app.user == article.user %}
-                {# <a href="{{ path('article_edit', {id: article.id}) }}" class="secondary-btn">Editer</a> #}
+                <a href="{{ path('article_edit', {id: article.id}) }}" class="edit-btn">Editer</a>
             {% endif %}
         </div>
         <div class="card-title">
@@ -20,7 +20,11 @@
             <p class="p-title">{{ article.user.pseudo }}</p>
         </div>
         <div class="card-date">
-            <p class="p-date">le {{ article.creationDate|date('d-m-Y')}} à {{ article.creationDate|date('H\\hi') }}</p>
+            {% if article.updateDate %}
+                <p class="p-date">modifié le {{ article.updateDate|date('d-m-Y')}} à {{ article.updateDate|date('H\\hi') }}</p>
+            {% else %}
+                <p class="p-date">le {{ article.creationDate|date('d-m-Y')}} à {{ article.creationDate|date('H\\hi') }}</p>
+            {% endif %}
         </div>
         <div class="card-summary">
             <p>{{ article.summary }}</p>

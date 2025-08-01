@@ -24,18 +24,18 @@ class Article
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\Length(
         min: 20,
-        max: 100,
+        max: 1000,
         minMessage: 'Le résumé doit contenir au moins 20 caractéres',
-        maxMessage: 'Le résumé doit contenir au maximun 100 caractéres',
+        maxMessage: 'Le résumé doit contenir au maximun 1000 caractéres',
     )]
     private ?string $summary = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\Length(
         min: 20,
-        max: 5000,
+        max: 50000,
         minMessage: "Le contenu de l'article doit contenir au moins 20 caractéres",
-        maxMessage: "Le contenu de l'article doit contenir au maximun 5000 caractéres",
+        maxMessage: "Le contenu de l'article doit contenir au maximun 50000 caractéres",
     )]
     private ?string $content = null;
 

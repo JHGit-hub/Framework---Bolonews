@@ -80,7 +80,6 @@ p{
 }
 
 a{
-    font-family: "Merriweather";
     text-transform: capitalize;
     font-weight: 500;
     font-size: 1.125rem;
@@ -93,6 +92,9 @@ a{
     border-radius: 5px;
     padding: 0.5rem 1rem;
     background-color: #DBDBDB;
+    a{
+        font-family: "Lato";
+    }
 }
 
 .secondary-btn{
@@ -101,6 +103,7 @@ a{
     border-radius: 5px;
     background-color: #ffffff;
 }
+
 
 /****** HEADER ******/
 
@@ -128,6 +131,7 @@ header{
             list-style: none;
         }
         a{
+            font-family: "Merriweather";
             display: flex;
             align-items: center;
             gap:0.5rem;
@@ -203,7 +207,21 @@ main{
         flex-direction: column;
         gap:0.5rem;
         .card-categorie{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .edit-btn{
+                font-family: "Lato";
+                font-size: 0.75rem;
+                border-radius: 5px;
+                border:solid 1px;
+                padding:0.2rem 0.7rem;
+                width: fit-content;
+                border-radius: 5px;
+                background-color: #ffffff;
+            }
             .p-categorie{
+                font-family: "Lato";
                 border-radius: 5px;
                 text-transform: capitalize;
                 width: fit-content;
@@ -211,7 +229,7 @@ main{
                 font-size: 0.75rem;
                 padding:0.2rem 1rem;
                 background-color: #DBDBDB;
-            }    
+            }   
         }
         .card-title{
             display: flex;
@@ -421,5 +439,20 @@ main{
         height: 100px;
         border: solid 1px;
         border-radius: 5px;
+    }
+}
+
+/****** PROFIL ******/
+
+.user-profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-transform:capitalize;
+    img{
+        width:150px;
+        border:solid 1px;
+        border-radius: 100px;
     }
 }

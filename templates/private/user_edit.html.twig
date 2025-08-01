@@ -3,5 +3,9 @@
 {% block title %}Edition du Profil{% endblock %}
 
 {% block body %}
-
+    {{ form_start(form) }}
+        {{ form_row(form.pseudo)}}
+        {{ form_row(form.image)}}
+        <button type="submit" class="edit-btn">Enregistrer</button>
+    {{ form_end(form) }} 
 {% endblock %}

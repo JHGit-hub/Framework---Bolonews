@@ -6,7 +6,6 @@ use App\Entity\Comment;
 use App\Form\SearchType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
-use App\Repository\CommentRepository;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,7 +68,7 @@ final class PublicController extends AbstractController
             $articles = $articleRepository->findBy(['categorie' => $categorieId]);
         }
 
-        return $this->render('article/list_articles.html.twig', [
+        return $this->render('article/list.html.twig', [
             'controller_name' => 'ProduitController',
             'articles' => $articles,
             'categories' => $categories,
@@ -101,7 +100,7 @@ final class PublicController extends AbstractController
         // récupération des données du formulaire
         $form->handleRequest($request);
 
-        // Si le formulaire est rempli, valider et on a un utilisateur connecté
+        // Si le formulaire est rempli et valider et si on a un utilisateur connecté
         if($user && $form->isSubmitted() && $form->isValid()){
 
             $comment->setUser($user);
@@ -109,6 +108,11 @@ final class PublicController extends AbstractController
                 $comment->setArticle($id);
             }
 
+            // Attribution de la date
+            $comment->setPublicationDate(new \DateTime());
+
+            // Lien du commentaire avec l'article concerné
+            $comment->setArticle($article);
             $em->persist($comment);
             $em->flush();
 
@@ -119,7 +123,7 @@ final class PublicController extends AbstractController
         // On récupére la liste des commentaires de l'article
         $comments = $article->getComments();
 
-        return $this->render('article/show_article.html.twig',[
+        return $this->render('article/show.html.twig',[
             'article' => $article,
             'form' => $form,
             'comments' => $comments,

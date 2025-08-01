@@ -4,6 +4,12 @@
 {% block title %}Espace Utilisateur{% endblock %}
 
 {% block body %}
+    <div class="user-profil">
+        <a href="{{ path('user_edit') }}" title="Accéder à mon profil">
+            <img src="{{ asset('images/' ~ user.image) }}" alt="Photo de {{ user.pseudo }}">
+        </a>
+            <h2>Bienvenue {{ user.pseudo }} </h2>
+    </div>
     <section class="container published-article">
         <div class="banner-list">
             <div class="secondary-btn">

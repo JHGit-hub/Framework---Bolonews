@@ -1,4 +1,4 @@
-{# templates/article/show_article.html.twig #}
+{# templates/article/show.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Détail de l'Article{% endblock %}
@@ -7,7 +7,7 @@
     <section class="container-detail-article">
         <div class="article-detail">
             <div class="article-categorie">
-                <p>{{ article.categorie.name }}
+                <a href="{{ path('app_article', {'categorieId' : article.categorie.id}) }}" class="p-categorie">{{ article.categorie.name }}</a>
             </div>
             <div class="article-title">
                 <h2>{{ article.title }}
