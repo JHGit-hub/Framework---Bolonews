@@ -5,8 +5,8 @@
 
 {% block body %}
     <section class="search-bar">
-        <div class="search-form">
-            {{ form_start(form) }}
+        <div>
+            {{ form_start(form, {'attr' : {'class': 'search-form'}}) }}
                 {{ form_widget(form.search) }}
                 <button type="submit" class="search-btn">
                     <img src="{{ asset('icons/search.svg') }}" alt="bouton de validation de recherche">
@@ -14,7 +14,7 @@
             {{ form_end(form) }}
         </div>
         <div class="search-filter">
-            {# {% include 'article/fragments/_search_btn_bar.html.twig' %} #}
+            {% include 'article/fragments/_search_btn_bar.html.twig' %}
         </div>
     </section>
     <section class="container list-article">

@@ -40,8 +40,8 @@ final class PublicController extends AbstractController
         ]);
     }
 
-    #[Route('/article/list', name: 'app_article')]
-    public function search(CategorieRepository $categorieRepository, ArticleRepository $articleRepository, Request $request): Response
+    #[Route('/article/list/{categorieId}', name: 'app_article', defaults: ['categorieId' => null])]
+    public function search($categorieId = null, CategorieRepository $categorieRepository, ArticleRepository $articleRepository, Request $request): Response
     {
 
         $form = $this->createForm(SearchType::class);
@@ -50,20 +50,21 @@ final class PublicController extends AbstractController
         // On récupére la liste de tous les articles
         $articles = $articleRepository->findAll();
 
+        // On récupére la liste de toutes les catégories
+        $categories = $categorieRepository->findAll();
+
+        // Si le formulaire est rempli, on filtre sur la recherche des contenus, des chapeaux ou des titres
         if($form->isSubmitted() && $form->isValid()){
             $searchData = $form->get('search')->getData();
             //Je vérifie s'il y a des infos dans la recherche
-            if(empty($searchData)){
-                //Afficher tous les articles
-                $articles = $articleRepository->findAll();
-            } else {
+            if(!empty($searchData)){
                 //Afficher les articles correspondant à la recherche
                 $articles = $articleRepository->findBySearch($searchData);
             }
+        // Si une catégorie est choisie (via l'URL)
+        } elseif ($categorieId !== null) {
+            $articles = $articleRepository->findBy(['categorie' => $categorieId]);
         }
-
-        // On récupére la liste de toutes les catégories
-        $categories = $categorieRepository->findAll();
 
         return $this->render('article/list_articles.html.twig', [
             'controller_name' => 'ProduitController',

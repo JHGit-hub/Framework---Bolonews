@@ -21,7 +21,7 @@ class ArticleRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->where('a.title LIKE :val')
-            // ->orWhere( 'a.categorie.name LIKE :val')
+            ->orWhere( 'a.content LIKE :val')
             ->orWhere('a.summary LIKE :val')
             ->setParameter('val', '%' . $value .'%')
             ->orderBy('a.id', 'ASC')

@@ -15,7 +15,7 @@ class SearchType extends AbstractType
             ->add('search', TextType::class,[
                 'label' =>"",
                 'required' => false,
-                'attr' =>['placeholder' => 'recherche'],
+                'attr' =>['placeholder' => 'rechercher'],
             ])
         ;
     }
