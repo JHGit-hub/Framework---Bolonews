@@ -22,7 +22,7 @@ class RegistrationFormType extends AbstractType
             ->add('email')
             ->add('pseudo')
             ->add('image', FileType::class,[
-                'label' => 'Image produit',
+                'label' => '',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [

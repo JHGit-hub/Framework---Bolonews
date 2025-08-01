@@ -20,15 +20,15 @@
                 </div>
                 <div>
                     <ul>
-                        <li>Home</li>
-                        <li>Articles</li>
-                        <li>Contact</li>
+                        <li><a href="{{ path('app_public') }}">Home</a></li>
+                        <li><a href="{{ path('app_article') }}">Articles</a></li>
+                        <li><a href="">Articles</a></li>
                     </ul>
                 </div>
                 <div>
                     {% if app.user %}
                     <ul>
-                        <li><a href="{{ path('user_homepage') }}">Mon espace <img src="{{ asset('icons/user.svg') }}" alt="logo de l'utilisateur connecté"></li>
+                        <li><a href="{{ path('app_private') }}">Mon espace <img src="{{ asset('icons/user.svg') }}" alt="logo de l'utilisateur connecté"></li>
                         <li><a href="{{ path('app_logout') }}">Me déconnecter</a></li>
                     </ul>
                     {% else %}

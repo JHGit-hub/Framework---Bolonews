@@ -1,0 +1,250 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.validate-btn{
+    background-color: rgb(26, 197, 46);
+    color: #000000;
+    font-family: "Lato";
+    font-size: 1.125rem;
+    border-radius: 5px;
+    padding:0.5rem 1rem;
+    border-color: rgb(26, 197, 46);
+}
+
+.back-btn{
+    background-color: red;
+    color: #000000;
+    font-family: "Lato";
+    font-size: 1.125rem;
+    border-radius: 5px;
+    padding:0.5rem 1rem;
+}
+
+/******* FONT *******/
+@font-face {
+    font-family: "Merriweather";
+    src: url(fonts/Merriweather_48pt-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url(fonts/Lato-Regular.ttf);
+}
+
+h1{
+    font-family: "Merriweather";
+    text-transform: capitalize;
+    font-size: 4.75rem;
+    font-weight: 500;
+}
+
+h2{
+
+}
+
+h3{
+    font-family: "Merriweather";
+    font-size: 1.625;
+    font-weight: 500;
+}
+
+h4{
+    font-family: "Merriweather";
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #000000;
+}
+
+h5{
+        font-family: "Merriweather";
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000000;
+}
+
+p{
+    font-family: "Lato";
+    font-size: 0.875rem;
+    color: #000000;
+}
+
+a{
+    font-family: "Merriweather";
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: #000000;
+}
+
+
+/****** HEADER ******/
+
+/*** NAVBAR ***/
+header{
+    width:80%;
+}
+
+.navbar{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:2rem;
+    p{
+       font-family: "Merriweather";
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 1.125rem;
+        color: #000000;
+    }
+    ul{
+        display:flex;
+        gap: 3rem;
+        li{
+            list-style: none;
+            a{
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+/*** TITLE ***/
+
+.title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+    gap: 1rem;
+    border-bottom: solid 4px #000000;
+    padding-bottom: 2rem;
+}
+
+
+/****** MAIN ******/
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width:66%;
+    display: flex;
+    gap:2rem;
+    .banner-list{
+        display: flex;
+        flex-direction: column;
+        gap:2rem;
+    }
+}
+
+
+/*** CARD ***/
+
+.card-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap:2rem;
+    flex:1 1 calc( 49% - 2rem );
+}
+
+.card{
+    display: flex;
+    width:47%;
+    height:250px;
+    gap: 1rem;
+    .card-img{
+       width: 39%;
+       height:250px;
+       overflow: hidden;
+       border-top-left-radius: 5px;
+       border-bottom-left-radius: 5px;
+        img{
+            width:100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+       }
+    }
+    .card-text{
+        width:61%;
+        display: flex;
+        flex-direction: column;
+        gap:0.5rem;
+        .card-categorie{
+            .p-categorie{
+                border-radius: 5px;
+                text-transform: capitalize;
+                width: fit-content;
+                font-family: "Lato";
+                font-size: 0.75rem;
+                padding:0.2rem 1rem;
+                background-color: #DBDBDB;
+            }    
+        }
+        .card-title{
+            display: flex;
+            flex-direction: column;
+            gap:0.5rem;
+            .p-title{
+                font-size: 0.75rem;
+                color:#7F7F7F;
+                text-transform: capitalize;
+            }
+        }
+        .card-date{
+            align-self: flex-end;
+            .p-date{
+                font-size: 0.625rem;
+                color:#7F7F7F;
+            }
+        }
+        .card-link{
+            display:flex;
+            gap:1rem;
+            align-items: center;
+            align-self: flex-end;
+            a{
+                font-family: "Lato";
+                font-size: 0.875rem;
+                text-transform: none;
+            }
+        }
+        .card-social{
+            display: flex;
+            gap:2rem;
+            .card-comment, .card-like{
+                align-items: center;
+                display: flex;
+                gap:0.7rem;
+            }
+
+        }
+    }
+}
+
+/****** FORMULAIRE ******/
+
+/*** LOGIN ***/
+
+.form-login{
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: solid 2px #000000;
+    padding: 2rem;
+    margin-top: 5rem;
+}

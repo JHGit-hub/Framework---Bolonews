@@ -31,7 +31,7 @@ class Comment
     private ?Article $article = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
-    private ?user $user = null;
+    private ?User $user = null;
 
     public function getId(): ?int
     {

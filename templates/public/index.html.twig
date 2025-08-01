@@ -5,16 +5,18 @@
 
 {% block body %}
     <section class="container banner">
+    <!--
         <div class="banner-title">
             <h4>A la une!</h4>
-            {% include 'article/fragments/_banner_article.html.twig' %}
+            { include 'article/fragments/_banner_article.html.twig' %}
         </div>
+        -->
     </section>
     <section class="container list-article">
         <div class="banner-list">
             <h4>Dernieres parutions</h4>
             <div class="card-list">
-                {% for article in articles %}
+                {% for article in articles|slice(0, 6) %}
                     {% include 'article/fragments/_card_article.html.twig' %}
                 {% endfor %}   
             </div>           

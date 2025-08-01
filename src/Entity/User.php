@@ -24,10 +24,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180)]
     #[Assert\NotBlank(message: "L'email est requis.")]
+    /*
     #[Assert\Regex(
         pattern: '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
         message: "L'adresse email n'est pas valide."
     )]
+    */
     private ?string $email = null;
 
     /**
@@ -40,7 +42,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Le mot de passe est requis.")]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]

@@ -9,18 +9,18 @@
     </div>
     <div class="card-text">
         <div class="card-categorie">
-            <p class="categorie">{{ article.categorie.name }}</p>
+            <p class="p-categorie">{{ article.categorie.name }}</p>
             <!-- si l'utilisateur est connecté et est l'auteur de l'article -->
-            {% if (app.user && app.user == article.user) %}
-                <a href="{{ path('article_edit', {id: article.id}) }}" class="secondary-btn">Editer</a>
+            {% if app.user and app.user == article.user %}
+                {# <a href="{{ path('article_edit', {id: article.id}) }}" class="secondary-btn">Editer</a> #}
             {% endif %}
         </div>
         <div class="card-title">
-            <h4>{{ article.title }}</h4>
-            <p>{{ article.user.pseudo }}</p>
+            <h5>{{ article.title }}</h5>
+            <p class="p-title">{{ article.user.pseudo }}</p>
         </div>
         <div class="card-date">
-            <p>{{ article.creation_date|date('d/m/Y') }}</p>
+            <p class="p-date">le {{ article.creationDate|date('d-m-Y')}} à {{ article.creationDate|date('H\\hi') }}</p>
         </div>
         <div class="card-summary">
             <p>{{ article.summary }}</p>
@@ -32,11 +32,11 @@
         <div class="card-social">
             <div class="card-comment">
                 <img src="{{ asset('icons/message_circle.svg') }}" alt="nombre de commentaire">
-                <p>{{ nbrComment }}</p>
+                <p>nbrComment</p><!-- nbr de commentaires -->
             </div>
             <div class="card-like">
                 <img src="{{ asset('icons/heart.svg') }}" alt="nombre de like">
-                <p>{{ nbrlike }}</p>
+                <p>nbrlike</p><!-- nbr de like -->
             </div>
         </div>
     </div>
