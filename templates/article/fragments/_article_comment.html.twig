@@ -11,7 +11,7 @@
                 <p>{{ comment.user.pseudo }}</p>
             </div>
             <div class="comment-date">
-                <p>{{ comment.publication_date|date('d/m/Y') }}</p>
+                <p>le {{ comment.publicationDate|date('d-m-Y')}} à {{ comment.publicationDate|date('H\\hi') }}</p>
             </div>
         </div>
         <div class="comment-content">

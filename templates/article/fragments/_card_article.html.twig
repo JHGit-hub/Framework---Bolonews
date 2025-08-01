@@ -9,7 +9,7 @@
     </div>
     <div class="card-text">
         <div class="card-categorie">
-            <p class="p-categorie">{{ article.categorie.name }}</p>
+            <a href="{{ path('app_article', {'categorieId' : article.categorie.id}) }}" class="p-categorie">{{ article.categorie.name }}</a>
             <!-- si l'utilisateur est connecté et est l'auteur de l'article -->
             {% if app.user and app.user == article.user %}
                 {# <a href="{{ path('article_edit', {id: article.id}) }}" class="secondary-btn">Editer</a> #}
@@ -32,11 +32,11 @@
         <div class="card-social">
             <div class="card-comment">
                 <img src="{{ asset('icons/message_circle.svg') }}" alt="nombre de commentaire">
-                <p>nbrComment</p><!-- nbr de commentaires -->
+                <p>{{ article.comments|length }}</p><!-- nbr de commentaires -->
             </div>
             <div class="card-like">
                 <img src="{{ asset('icons/heart.svg') }}" alt="nombre de like">
-                <p>nbrlike</p><!-- nbr de like -->
+                <p>{{ article.likes|length }}</p><!-- nbr de like -->
             </div>
         </div>
     </div>

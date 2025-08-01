@@ -4,7 +4,7 @@
 {% block title %}Détail de l'Article{% endblock %}
 
 {% block body %}
-    <section class="container detail-article">
+    <section class="container-detail-article">
         <div class="article-detail">
             <div class="article-categorie">
                 <p>{{ article.categorie.name }}
@@ -13,7 +13,7 @@
                 <h2>{{ article.title }}
             </div>
             <div class="article-date">
-                <p>{{ article.creationDate|date('d/m/Y') }}</p>
+                <p class="p-date">le {{ article.creationDate|date('d-m-Y')}} à {{ article.creationDate|date('H\\hi') }}</p>
             </div>
             <div class="article-summary">
                 <h4>{{ article.summary }}</h4>
@@ -41,26 +41,30 @@
             <div class="article-social">
                 <div class="card-comment">
                     <img src="{{ asset('icons/message_circle.svg') }}" alt="nombre de commentaire">
-                    <p>{{ nbrComment }}</p>
+                    <p>{{ article.comments|length }}</p>
                 </div>
                 <div class="card-like">
                     <img src="{{ asset('icons/heart.svg') }}" alt="nombre de like">
-                    <p>{{ nbrlike }}</p>
+                    <p>{{ article.likes|length }}</p>
                 </div>
             </div>
         </div>
     </section>
     <section class="container-fuild"></section>
-    <section class="container comment">
+    <section class="container-comment">
         <h4>Commentaires</h4>
         {% include 'article/fragments/_article_comment.html.twig' %}
     </section>
-    <section class="container new-comment">
-        <div class="comment-form">
-            {{ form_start(form) }}
-                {{ form_widget(form.content) }}
-                <button type="submit" class="secondary-btn">Ajouter</button>
-            {{ form_end(form) }}
-        </div>
-    </section>
+    {% if app.user %}
+        <section class="container new-comment">
+            <div class="comment-form">
+                {{ form_start(form) }}
+                    {{ form_label(form.content) }}
+                    {{ form_widget(form.content) }}
+                    {{ form_errors(form.content) }}
+                    <button type="submit" class="secondary-btn">Ajouter</button>
+                {{ form_end(form) }}
+            </div>
+        </section>
+    {% endif %}
 {% endblock %}

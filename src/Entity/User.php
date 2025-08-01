@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use Assert\NotBlank;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;

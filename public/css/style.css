@@ -48,7 +48,9 @@ h1{
 }
 
 h2{
-
+    font-family: "Merriweather";
+    font-size: 2rem;
+    font-weight: 500;
 }
 
 h3{
@@ -86,6 +88,19 @@ a{
     text-decoration: none;
 }
 
+.cta{
+    border: solid 2px #DBDBDB;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    background-color: #DBDBDB;
+}
+
+.secondary-btn{
+    width: fit-content;
+    padding: 0.2rem 1rem;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
 
 /****** HEADER ******/
 
@@ -108,9 +123,14 @@ header{
     }
     ul{
         display:flex;
-        gap: 3rem;
+        gap: 2rem;
         li{
             list-style: none;
+        }
+        a{
+            display: flex;
+            align-items: center;
+            gap:0.5rem;
         }
     }
 }
@@ -141,6 +161,7 @@ main{
     width:66%;
     display: flex;
     gap:2rem;
+    margin:2rem 0;
     .banner-list{
         display: flex;
         flex-direction: column;
@@ -298,10 +319,107 @@ main{
     flex-direction: row;
     gap: 3rem;
     margin: 2rem 0;
-    .cta{
-        border: solid 2px #DBDBDB;
+}
+
+/****** COMMENTS / DETAIL ARTICLE ******/
+
+.container-detail-article {
+    width: 66%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0;
+    .article-detail{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        .article-categorie{
+            border-radius: 5px;
+            text-transform: capitalize;
+            width: fit-content;
+            font-family: "Lato";
+            font-size: 0.75rem;
+            padding:0.2rem 1rem;
+            background-color: #DBDBDB;
+        }
+        .article-date{
+            .p-date{
+                font-size: 0.625rem;
+                color:#7F7F7F;
+            }
+        }
+    }
+    .article-img{
+        align-self: center;
+        width:70%;
+        img{
+            width:100%;
+        }
+    }
+    .article-footer{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        .article-pseudo{
+            img{
+                width:48px;
+                border-radius: 50px;
+            }
+        }
+        .article-social{
+            display: flex;
+            gap: 2rem;
+        }
+    }
+}
+
+.container-comment{
+    width: 66%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0;
+    .comment{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border:solid 1px;
+        border-radius:5px;
+        padding:0.5rem 1rem;
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            .comment-pseudo {
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+                text-transform: capitalize;
+                img{
+                    width:48px;
+                    border-radius: 50px;
+                }
+            }
+        }
+    }
+}
+
+.comment-form{
+    width:50%
+}
+
+.comment-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    label{
+        font-family: "Merriweather";
+        font-size: 1.125rem;
+        font-weight: 500;
+    }
+    textarea{
+        height: 100px;
+        border: solid 1px;
         border-radius: 5px;
-        padding: 0.5rem 1rem;
-        background-color: #DBDBDB;
     }
 }
