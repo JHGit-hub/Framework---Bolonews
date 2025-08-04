@@ -18,6 +18,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
+            /*
             ->add('roles', ChoiceType::class, [
                 'choices'  => [
                     'Utilisateur' => 'ROLE_USER',
@@ -27,6 +28,7 @@ class UserType extends AbstractType
                 'expanded' => true, // ou false si tu préfères un select multiple
                 'label' => 'Rôles',
             ])
+            */
             ->add('password')
             ->add('pseudo')
             ->add('image', FileType::class,[
@@ -42,11 +44,6 @@ class UserType extends AbstractType
                         'mimeTypesMessage' => 'Veuillez télécharger une image valide',
                     ])
                     ],
-            ])
-            ->add('likes', EntityType::class, [
-                'class' => Article::class,
-                'choice_label' => 'id',
-                'multiple' => true,
             ])
         ;
     }

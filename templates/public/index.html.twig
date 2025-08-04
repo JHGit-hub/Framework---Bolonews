@@ -4,13 +4,11 @@
 {% block title %}Acceuil{% endblock %}
 
 {% block body %}
-    <section class="container banner">
-    <!--
+    <section class="container">
         <div class="banner-title">
             <h4>A la une!</h4>
-            { include 'article/fragments/_banner_article.html.twig' %}
+            {% include 'article/fragments/_banner_article.html.twig' %}
         </div>
-        -->
     </section>
     <section class="container">
         <div class="banner-list">

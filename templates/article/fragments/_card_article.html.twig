@@ -23,7 +23,7 @@
             {% if article.updateDate %}
                 <p class="p-date">modifié le {{ article.updateDate|date('d-m-Y')}} à {{ article.updateDate|date('H\\hi') }}</p>
             {% else %}
-                <p class="p-date">le {{ article.creationDate|date('d-m-Y')}} à {{ article.creationDate|date('H\\hi') }}</p>
+                <p class="p-date">publié le {{ article.creationDate|date('d-m-Y')}} à {{ article.creationDate|date('H\\hi') }}</p>
             {% endif %}
         </div>
         <div class="card-summary">

@@ -31,6 +31,23 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findTopArticle(): ?Article
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.likes', 'l') // on lie la table likes
+            ->leftJoin('a.comments', 'c') // on lie la table comments
+            ->addSelect('COUNT(DISTINCT l) AS HIDDEN likesCount') // on compte le nombre de likes différents
+            ->addSelect('COUNT(DISTINCT c) AS HIDDEN commentsCount') // on compte le nombre de commentaires different
+            ->where('a.publication = 1') // uniquement les articles publiés
+            ->groupBy('a.id') // on les groupes par leur id
+            ->orderBy('likesCount', 'DESC') // on les classe par nombre de likes décroissant
+            ->addOrderBy('commentsCount', 'DESC') // on les classe par nombre de commentaires décroissant
+            ->setMaxResults(1) // on ne garde q'un seul résultat
+            ->getQuery() // on génére la requêt finale
+            ->getOneOrNullResult() // on exécute la requête, renvoi null si par de résultat
+        ;
+    }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */

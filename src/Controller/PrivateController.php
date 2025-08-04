@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -114,9 +115,17 @@ final class PrivateController extends AbstractController
         ]);
     }
 
-    #[Route('/private/create', name: 'article_create')] 
+    #[Route('/article/create', name: 'article_create')] 
     public function create(Request $request, EntityManagerInterface $em): Response
     {
+        // On récupére l'utilisateur connecté
+        $user = $this->getUser();
+
+        // On vérifie que l'utilisateur est connecté
+        if (!$user instanceof \App\Entity\User) {
+            return $this->redirectToRoute('app_login');
+        
+        }
         // On instancie la class Article
         $article = new Article();
 
@@ -128,6 +137,13 @@ final class PrivateController extends AbstractController
 
         // Si formulaire soummit et validé, on execute la requete auprés de la bdd
         if($form->isSubmitted() && $form->isValid()){
+
+            $article->setUser($user);
+
+            // Attribution de la date de création
+            $article->setCreationDate(new \DateTime());
+
+
             // On récupére l'image issu du formulaire
             $imageFile = $form->get('image')->getData();
 
@@ -155,7 +171,7 @@ final class PrivateController extends AbstractController
             return $this->redirectToRoute("app_private");
         }
 
-        return $this->render('private/create.html.twig', [
+        return $this->render('article/create.html.twig', [
             "form" => $form
         ]);
     }
@@ -177,6 +193,9 @@ final class PrivateController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Attribution de la date de modification
+            $article->setUpdateDate(new \DateTime());
 
             // On récupére l'image issu du formulaire
             $imageFile = $form->get('image')->getData();
@@ -215,5 +234,48 @@ final class PrivateController extends AbstractController
         ]);
     }
 
+    #[Route('/private/delete/{id}', name: 'article_delete')]
+    public function delete(Article $article, EntityManagerInterface $em): Response
+    {
+        // On récupére l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Si ce n'est pas l'auteur, on redirige immédiatement
+        if (!$user || $article->getUser() !== $user) {
+            $this->addFlash('danger', "Tu n'as pas le droit de modifier cet article.");
+            return $this->redirectToRoute('app_private');
+        };
+
+        // On supprime l'article en utilisant Doctrine
+        $em->remove($article);
+        $em->flush();
+
+        // On envoi un message en cas de succés
+        $this->addFlash('success', 'Article supprimé avec succès !');
+
+        // On renvoi vers user_homepage.html.twig
+        return $this->redirectToRoute('app_private');
+
+    }
+
+    #[Route('/article/{id}/like', name: 'article_like', methods: ['POST'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function like(Article $article, EntityManagerInterface $em): Response
+    {
+        $user = $this->getUser();
+
+        if ($article->getLikes()->contains($user)) {
+            // Déjà liké, donc on retire le like (dislike)
+            $article->removeLike($user);
+        } else {
+            // Pas encore liké, donc on like
+            $article->addLike($user);
+        }
+
+        $em->flush();
+
+        // Redirection vers la page de l'article
+        return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
+    }
 
 }

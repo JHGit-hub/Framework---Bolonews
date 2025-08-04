@@ -1,42 +1,56 @@
 {# templates/article/fragments/_banner_article.html.twig #}
-<div class="banner-card">
+<div class="banner">
     <div class="banner-img">
-        {% if article_banner.image %}
-            <img src="{{ asset('images/' ~ article_banner.image) }}" alt="image de {{ article_banner.title }}">
+        {% if topArticle.image %}
+            <img src="{{ asset('images/' ~ topArticle.image) }}" alt="image de {{ topArticle.title }}">
         {% else %}
             <img src="{{ asset('images/article_default.jpg') }}" alt="photo par defaut de l'article">
         {% endif %}
     </div>
     <div class="banner-text">
         <div class="banner-categorie">
-            <p class="categorie">{{ article_banner.categorie.name }}</p>
+            <a href="{{ path('app_article', {'categorieId' : topArticle.categorie.id}) }}" class="p-categorie">{{ topArticle.categorie.name }}</a>
+            <!-- si l'utilisateur est connecté et est l'auteur de l'article -->
+            {% if app.user and app.user == topArticle.user %}
+                <a href="{{ path('article_edit', {id: topArticle.id}) }}" class="edit-btn">Editer</a>
+            {% endif %}
         </div>
         <div class="banner-title">
-            <h3>{{ article_banner.title }}</h3>
+            <h3>{{ topArticle.title }}</h3>
         </div>
         <div class="banner-summary">
-            <p>{{ article_banner.summary }}</p>
+            <p>{{ topArticle.summary }}</p>
         </div>
-        <div class="banner-pseudo">
-            {% if article_banner.user.image %}
-                <img src="{{ asset('images/' ~ article_banner.user.image) }}" alt="Photo de {{ article_banner.user.pseudo }}">
-            {% else %}
-                <img src="{{ asset('images/profil_default.jpg') }}" alt="Photo par defaut de l'auteur">
-            {% endif %}
-            <p>{{ article_banner.user.pseudo }}</p>
+        <div class="banner-autor">
+            <div class="banner-pseudo">
+                {% if topArticle.user.image %}
+                    <img src="{{ asset('images/' ~ topArticle.user.image) }}" alt="Photo de {{ topArticle.user.pseudo }}">
+                {% else %}
+                    <img src="{{ asset('images/profil_default.jpg') }}" alt="Photo par defaut de l'auteur">
+                {% endif %}
+                <p>{{ topArticle.user.pseudo }}</p>
+            </div>
+            <div class="banner-link">
+                <a href="{{ path('article_show', {id: topArticle.id}) }}">Lire la suite</a>
+                <img src="{{ asset('icons/arrow_right.svg') }}" alt="lien vers lecture de l'article">
+            </div>
         </div>
         <div class="banner-footer">
             <div class="banner-date">
-                <p>{{ article_banner.creation_date|date('d/m/Y') }}</p>
+                {% if topArticle.updateDate %}
+                    <p class="p-date">modifié le {{ topArticle.updateDate|date('d-m-Y')}} à {{ topArticle.updateDate|date('H\\hi') }}</p>
+                {% else %}
+                    <p class="p-date">publié le {{ topArticle.creationDate|date('d-m-Y')}} à {{ topArticle.creationDate|date('H\\hi') }}</p>
+                {% endif %}
             </div>
             <div class="banner-social">
                 <div class="banner-comment">
                     <img src="{{ asset('icons/message_circle.svg') }}" alt="nombre de commentaire">
-                    <p>{{ nbrComment }}</p>
+                    <p>{{ topArticle.comments|length }}</p>
                 </div>
                 <div class="banner-like">
                     <img src="{{ asset('icons/heart.svg') }}" alt="nombre de like">
-                    <p>{{ nbrlike }}</p>
+                    <p>{{ topArticle.likes|length }}</p>
                 </div>
             </div>
         </div>

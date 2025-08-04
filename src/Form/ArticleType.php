@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticleType extends AbstractType
 {
@@ -18,8 +19,24 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('summary')
-            ->add('content')
+            ->add('summary', TextareaType::class,[
+                'label' => 'Ajouter un résumé',
+                'required' => true,
+                'attr' =>[
+                    'placeholder' => '',
+                    'row' => 5,
+                    'class' => 'comment-textarea',
+                    ]
+                ])
+            ->add('content', TextareaType::class,[
+                'label' => 'Votre article',
+                'required' => true,
+                'attr' =>[
+                    'placeholder' => '',
+                    'row' => 5,
+                    'class' => 'comment-textarea',
+                    ]
+                ])
             ->add('image', FileType::class,[
                 'label' => 'Image produit',
                 'mapped' => false,
@@ -34,21 +51,10 @@ class ArticleType extends AbstractType
                     ])
                     ],
             ])
-            ->add('creation_date')
-            ->add('update_date')
             ->add('publication')
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
-                'choice_label' => 'id',
-            ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
-            ->add('likes', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-                'multiple' => true,
+                'choice_label' => 'name',
             ])
         ;
     }

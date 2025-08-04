@@ -6,8 +6,13 @@
 {% block body %}
     <section class="container-detail-article">
         <div class="article-detail">
-            <div class="article-categorie">
-                <a href="{{ path('app_article', {'categorieId' : article.categorie.id}) }}" class="p-categorie">{{ article.categorie.name }}</a>
+            <div class="article-header">
+                <div class="article-categorie">
+                    <a href="{{ path('app_article', {'categorieId' : article.categorie.id}) }}" class="p-categorie">{{ article.categorie.name }}</a>
+                </div>
+                {% if app.user and app.user == article.user %}
+                    <a href="{{ path('article_edit', {id: article.id}) }}" class="edit-btn">Editer</a>
+                {% endif %}
             </div>
             <div class="article-title">
                 <h2>{{ article.title }}
@@ -39,13 +44,27 @@
                 <p>{{ article.user.pseudo }}</p>           
             </div>
             <div class="article-social">
-                <div class="card-comment">
+                <div class="article-comment">
                     <img src="{{ asset('icons/message_circle.svg') }}" alt="nombre de commentaire">
                     <p>{{ article.comments|length }}</p>
                 </div>
-                <div class="card-like">
+                <div class="article-like">
+                {% if app.user %}
+                    <form action="{{ path('article_like', {'id': article.id}) }}" method="post">
+                        <button type="submit">
+                            {% if article.likes.contains(app.user) %}
+                                <img src="{{ asset('icons/heart.svg') }}" alt="je n'aime plus">
+                                Je n'aime plus ({{ article.likes|length }})
+                            {% else %}
+                                <img src="{{ asset('icons/heart.svg') }}" alt="j'aime'">
+                                J'aime ({{ article.likes|length }})
+                            {% endif %}
+                        </button>
+                    </form>
+                {% else %}
                     <img src="{{ asset('icons/heart.svg') }}" alt="nombre de like">
                     <p>{{ article.likes|length }}</p>
+                {% endif %}
                 </div>
             </div>
         </div>

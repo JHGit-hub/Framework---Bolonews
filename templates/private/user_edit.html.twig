@@ -3,9 +3,64 @@
 {% block title %}Edition du Profil{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-        {{ form_row(form.pseudo)}}
-        {{ form_row(form.image)}}
-        <button type="submit" class="edit-btn">Enregistrer</button>
-    {{ form_end(form) }} 
+<div class="container">
+        <div class="form-create form-profil">
+            <div class="form-title">
+                <h2>Modifier votre profil</h2>
+                <a href="{{ path('app_private') }}" class="back-btn">Annuler</a>
+            </div>
+
+            <!-- Affiche l’image actuelle si elle existe -->
+            {% if user.image %}
+                <div class="current-image">
+                    <p>Image actuelle :</p>
+                    <img src="{{ asset('images/' ~ user.image) }}" alt="Image actuelle" width="120">
+                </div>
+            {% endif %}
+
+            {{ form_start(form , {'attr': {'novalidate': 'novalidate'}})}}
+                <div class="label-form">
+                    <!-- label -->
+                    {{ form_label(form.pseudo) }}
+                    <!-- input -->
+                    {{ form_widget(form.pseudo, {
+                        "attr": { 'class': "form-control " ~ (form.pseudo.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.pseudo, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <div class="label-form">
+                    <!-- label -->
+                    {{ form_label(form.email) }}
+                    <!-- input -->
+                    {{ form_widget(form.email, {
+                        "attr": { 'class': "form-control" ~ (form.email.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.email, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <div class="label-form">
+                    <!-- label -->
+                    {{ form_label(form.password) }}
+                    <!-- input -->
+                    {{ form_widget(form.password, {
+                        "attr": { 'class': "form-control" ~ (form.password.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.password, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <div class="label-form">
+                    <!-- label -->
+                    {{ form_label(form.image) }}
+                    <!-- input -->
+                    {{ form_widget(form.image, {
+                        "attr": { 'class': "form-control " ~ (form.image.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.image, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <button type="submit" class="secondary-btn">Enregistrer</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

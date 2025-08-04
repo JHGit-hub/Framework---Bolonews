@@ -3,12 +3,12 @@
 {% block title %}Modification d'un article{% endblock %}
 
 {% block body %}
-    <div class="modal-edit">
-        <div class="edit-title">
-            <h4>Modifier l'article'</h4>
-            <a href="{{ path('app_private') }}" class="back-btn">Annuler</a>
-        </div>
-        {{ form_start(form) }}
+    <div class="container">
+        <div class="form-create">
+            <div class="form-title">
+                <h2>Modifier un article</h2>
+                <a href="{{ path('app_private') }}" class="back-btn">Annuler</a>
+            </div>
 
             <!-- Affiche l’image actuelle si elle existe -->
             {% if article.image %}
@@ -18,19 +18,69 @@
                 </div>
             {% endif %}
 
-            <div class="formulaire">
-                {{ form_row(form.title) }}
-                {{ form_row(form.summary) }}
-                {{ form_row(form.content) }}
-                {{ form_row(form.creation_date) }}
-                {{ form_row(form.update_date) }}
-                {{ form_row(form.publication) }}
-                {{ form_row(form.categorie) }}
-                {{ form_row(form.image) }}
-            </div>
-
-            <button type="submit" class="edit-btn">Enregistrer</button>
-        {{ form_end(form) }}
-
+            {{ form_start(form , {'attr': {'novalidate': 'novalidate'}})}}
+                <div class="label-form">
+                    <!-- label -->
+                    {{ form_label(form.title) }}
+                    <!-- input -->
+                    {{ form_widget(form.title, {
+                        "attr": { 'class': "form-control " ~ (form.title.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.title, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <div class="label-form">
+                    <!-- label -->
+                    {{ form_label(form.summary) }}
+                    <!-- input -->
+                    {{ form_widget(form.summary, {
+                        "attr": { 'class': "form-control textarea-summary" ~ (form.summary.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.summary, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <div class="label-form">
+                    <!-- label -->
+                    {{ form_label(form.content) }}
+                    <!-- input -->
+                    {{ form_widget(form.content, {
+                        "attr": { 'class': "form-control textarea-content" ~ (form.content.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.content, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <div class="label-form">
+                    <!-- label -->
+                    {{ form_label(form.categorie) }}
+                    <!-- input -->
+                    {{ form_widget(form.categorie, {
+                        "attr": { 'class': "form-control " ~ (form.categorie.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.categorie, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <div class="label-form-publication">
+                    <!-- label -->
+                    {{ form_label(form.publication) }}
+                    <!-- input -->
+                    {{ form_widget(form.publication, {
+                        "attr": { 'class': "form-control " ~ (form.publication.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.publication, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <div class="label-form">
+                    <!-- label -->
+                    {{ form_label(form.image) }}
+                    <!-- input -->
+                    {{ form_widget(form.image, {
+                        "attr": { 'class': "form-control " ~ (form.image.vars.errors|length >0 ? "input-error" : '')}
+                    }) }}
+                    <!-- errors -->
+                    {{ form_errors(form.image, {"attr":{ "class": 'p-error'}}) }}
+                </div>
+                <button type="submit" class="secondary-btn">Enregistrer</button>
+            {{ form_end(form) }}
+        </div>
     </div>
 {% endblock %}

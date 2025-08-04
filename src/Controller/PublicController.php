@@ -29,7 +29,18 @@ final class PublicController extends AbstractController
     public function index(CategorieRepository $categorieRepository, ArticleRepository $articleRepository): Response
     {
         // On récupére la liste de tous les articles
-        $articles = $articleRepository->findAll();
+        $allArticles = $articleRepository->findAll();
+
+        // On récupére l'article qui a le plus de like et de commentaire
+        $topArticle = $articleRepository->findTopArticle();
+
+        // On récupére la liste des articles sans le topArticle
+        $articles = array_filter($allArticles, function($article) use ($topArticle){
+            // array_filter parcour le tableau $allArticles et 
+            //  compare chaque $article avec la varibale $topArticle
+            // et rempli un tableau $articles contenant tous les articles sauf $topArticle
+            return $article !== $topArticle;
+        });
 
         // On récupére la liste de toutes les catégories
         $categories = $categorieRepository->findAll();
@@ -39,6 +50,7 @@ final class PublicController extends AbstractController
             'controller_name' => 'ProduitController',
             'articles' => $articles,
             'categories' => $categories,
+            'topArticle' => $topArticle,
         ]);
     }
 
