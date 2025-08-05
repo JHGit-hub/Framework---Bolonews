@@ -11,15 +11,10 @@ https://www.figma.com/design/qW4C3c2wk1t6pHANizu5Ul/Blog--Copy-?node-id=0-1&p=f&
 ## Technology used
 
 - HTML
-- Javascript
 - CSS
 - Symfony
 - PHP
 - MySQL
-
-- Form
-- Carrousel
-- scrollbar
 
 ## Author
 
