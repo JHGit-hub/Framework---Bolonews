@@ -225,18 +225,6 @@ main{
             display: flex;
             align-items: center;
             justify-content: space-between;
-            /*
-            .edit-btn{
-                font-family: "Lato";
-                font-size: 0.75rem;
-                border-radius: 5px;
-                border:solid 1px;
-                padding:0.2rem 0.7rem;
-                width: fit-content;
-                border-radius: 5px;
-                background-color: #ffffff;
-            }
-                */
             .p-categorie{
                 font-family: "Lato";
                 border-radius: 5px;
@@ -347,18 +335,6 @@ main{
             display: flex;
             align-items: center;
             justify-content: space-between;
-            /*
-            .edit-btn{
-                font-family: "Lato";
-                font-size: 0.75rem;
-                border-radius: 5px;
-                border:solid 1px;
-                padding:0.2rem 0.7rem;
-                width: fit-content;
-                border-radius: 5px;
-                background-color: #ffffff;
-            }
-                */
             .p-categorie{
                 font-family: "Lato";
                 border-radius: 5px;
