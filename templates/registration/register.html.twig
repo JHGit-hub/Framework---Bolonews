@@ -3,9 +3,10 @@
 {% block title %}Création de compte{% endblock %}
 
 {% block body %}
-    <h1>Enregistrement de compte</h1>
+<div class="form-login">
+    <h3>Enregistrement de compte</h3>
     {{ form_start(registrationForm , {'attr': {'novalidate': 'novalidate'}})}}
-        <div>
+        <div class="label-form">
             <!-- label -->
             {{ form_label(registrationForm.email) }}
             <!-- input -->
@@ -15,7 +16,7 @@
             <!-- errors -->
             {{ form_errors(registrationForm.email, {"attr":{ "class": 'p-error'}}) }}
         </div>
-        <div>
+        <div class="label-form">
             <!-- label -->
             {{ form_label(registrationForm.plainPassword) }}
             <!-- input -->
@@ -25,23 +26,24 @@
             <!-- errors -->
             {{ form_errors(registrationForm.plainPassword, {"attr":{ "class": 'p-error'}}) }}
         </div>
-        <div>
+        <div class="label-form">
             {{ form_label(registrationForm.pseudo) }}
             {{ form_widget(registrationForm.pseudo, {
                 "attr": { 'class': "form-control " ~ (registrationForm.plainPassword.vars.errors|length >0 ? "input-error" : '')}
             }) }}
             {{ form_errors(registrationForm.pseudo, {"attr":{ "class": 'p-error'}}) }}
         </div>
-        <div>
+        <div class="label-form">
             {{ form_label(registrationForm.image) }}
             {{ form_widget(registrationForm.image) }}
             {{ form_errors(registrationForm.image) }}
         </div>
-        <div>
+        <div class="label-form-agreement">
             {{ form_label(registrationForm.agreeTerms) }}
             {{ form_widget(registrationForm.agreeTerms) }}
             {{ form_errors(registrationForm.agreeTerms) }}
         </div>    
-        <button type="submit" class="edit-btn">Envoyer</button>
+        <button type="submit" class="validate-btn">Enregistrer</button>
     {{ form_end(registrationForm) }}
+</dvi>
 {% endblock %}

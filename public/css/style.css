@@ -96,12 +96,12 @@ a{
 
 .validate-btn{
     background-color: rgb(26, 197, 46);
-    color: #000000;
     font-family: "Lato";
     font-size: 1.125rem;
     border-radius: 5px;
-    padding:0.5rem 1rem;
+    padding: 0.2rem 1rem;
     border-color: rgb(26, 197, 46);
+    align-self: flex-end;
 }
 
 .delete-btn{
@@ -110,7 +110,7 @@ a{
     font-family: "Lato";
     font-size: 1.125rem;
     border-radius: 5px;
-    padding:0.5rem 1rem;
+    padding: 0.2rem 1rem;
 }
 
 .edit-btn{
@@ -188,6 +188,7 @@ main{
     gap:2rem;
     margin:2rem 0;
     .banner-list{
+        width:100%;
         display: flex;
         flex-direction: column;
         gap:2rem;
@@ -422,6 +423,11 @@ main{
     border: solid 2px #000000;
     padding: 2rem;
     margin-top: 5rem;
+    form{
+        display:flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }
 
 /****** SEARCH BAR ******/
@@ -438,7 +444,7 @@ main{
         border: none;
         background: transparent;
         padding: 0;
-        margin: 0
+        margin: 0;
     }
 }
 
@@ -540,6 +546,14 @@ main{
     gap:0.5rem;
 }
 
+.label-form-agreement{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:0.5rem;
+    margin-top:0.5rem;
+}
+
 #article_publication{
     width:auto;
 }
@@ -625,6 +639,9 @@ main{
                 gap:0.5rem;
             }
             .article-like{
+                display: flex;
+                align-items: center;
+                gap:0.5rem;
                 form{
                     button{
                         display:flex;

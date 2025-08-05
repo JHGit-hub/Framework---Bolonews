@@ -18,6 +18,7 @@ final class PrivateController extends AbstractController
 {
     
     #[Route('/private/article/', name: 'app_private')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')] // se dirigie vers ce controleur que si l'utilisateur es connecté
     public function index(): Response
     {
         // On récupére l'utilisateur connecté
@@ -56,6 +57,7 @@ final class PrivateController extends AbstractController
     }
 
     #[Route('/private/user_edit', name: 'user_edit')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')] // se dirigie vers ce controleur que si l'utilisateur es connecté
     public function editUser(User $user, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
 
@@ -115,7 +117,8 @@ final class PrivateController extends AbstractController
         ]);
     }
 
-    #[Route('/article/create', name: 'article_create')] 
+    #[Route('/article/create', name: 'article_create')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')] // se dirigie vers ce controleur que si l'utilisateur es connecté 
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         // On récupére l'utilisateur connecté
@@ -178,6 +181,7 @@ final class PrivateController extends AbstractController
 
 
     #[Route('/private/edit/{id}', name: 'article_edit')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')] // se dirigie vers ce controleur que si l'utilisateur es connecté
     public function edit(Request $request, Article $article, EntityManagerInterface $em): Response
     {
         // On récupére l'utilisateur connecté
@@ -235,6 +239,7 @@ final class PrivateController extends AbstractController
     }
 
     #[Route('/private/delete/{id}', name: 'article_delete')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')] // se dirigie vers ce controleur que si l'utilisateur es connecté
     public function delete(Article $article, EntityManagerInterface $em): Response
     {
         // On récupére l'utilisateur connecté
@@ -259,7 +264,7 @@ final class PrivateController extends AbstractController
     }
 
     #[Route('/article/{id}/like', name: 'article_like', methods: ['POST'])]
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')] // se dirigie vers ce controleur que si l'utilisateur es connecté
     public function like(Article $article, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
